@@ -67,7 +67,26 @@ getwd()
 suv_df = read.csv("week2/data/compact_suv_r.csv")
 
 
+head(suv_df)
+tail(suv_df)
 
+str(suv_df)
+
+suv_df$Owner.Satisfaction <- ordered(suv_df$Owner.Satisfaction,levels=c("D","C","B","A"))
+
+levels(suv_df$Owner.Satisfaction)
+
+class(suv_df$Owner.Satisfaction)
+
+suv_df[7,3]
+
+suv_df[3:5,c(1,2)]
+
+suv_df[1:5,c("Model","Overall.Score")]
+
+#subset(DATA,CONDITION) function -> it is also for filtering the rows
+
+subset(suv_df,suv_df$Recommended =="Yes" & suv_df$Overall.Miles.Per.Gallon>25)
 
 
 
