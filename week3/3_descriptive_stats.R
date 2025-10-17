@@ -13,6 +13,8 @@ barplot(table(softdrink_df),col="blue")
 barplot(sort(table(softdrink_df)))
 
 data = table(softdrink_df)
+data
+sum(data)
 relative_data = data/sum(data)
 
 relative_data
@@ -33,18 +35,19 @@ summary(monthly_salary)
 
 summary(df)
 
-summary(df)[1]
+summary(df)[2]
 
 
 fivenum(monthly_salary) #min - q1  Median q3 Max
 
 quantile(monthly_salary, .25)
+
 quantile(monthly_salary, .5) # median
 
 quantile(monthly_salary, probs = seq(0, 1, 1/4))
 
 str(monthly_salary)
-sd(monthly_salary)
+sd(monthly_salary) # standard deviation
 median(monthly_salary)
 mean(monthly_salary)
 
@@ -110,7 +113,8 @@ boxplot(Monthly.Starting.Salary.... ~ Major,
 
 #covariance - correlation
 
-electronics_df <- read.csv("week3/data/electronics_r.csv") #Reads in CSV file Electronics.csv as a data frame
+electronics_df <- read.csv("week3/data/electronics_r.csv")#Reads in CSV file Electronics.csv as a data frame
+electronics_df
 number_commericals <- electronics_df$No..of.Commercials  #Reads in column of data from electronics_df as data object number_commercials
 sales_volume <- electronics_df$Sales.Volume #Reads in column of data from electronics_df as data object sales_volume
 cov(number_commericals, sales_volume) #Calculates covariance of number_commercials and sales_volume variables

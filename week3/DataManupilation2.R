@@ -1,5 +1,5 @@
 
-suv_df <- read.csv("week1/data/compact_suv_r.csv") #Reads in the CSV file CompactSUV.csv into a data frame in R
+suv_df <- read.csv("week3/data/compact_suv_r.csv") #Reads in the CSV file CompactSUV.csv into a data frame in R
 head(suv_df)
 tail(suv_df)
 View(suv_df) #Displays the data frame
@@ -41,10 +41,14 @@ rec_df <- subset(suv_df, Recommended == "Yes" & (Overall.Miles.Per.Gallon > 25 |
 
 ## 17/10/2025
 
+#adding new columns
 
 suv_df$NewRec <- suv_df$Recommended
 
 suv_df$NewRec
+names(suv_df)
+
+
 ?which
 slow_rows <- which(suv_df$Acceleration..0.60..Sec > 9)  #s rows that satisfy stated condition
 slow_rows  #Displays extracted rows
@@ -56,16 +60,25 @@ suv_df
 
 suv_df[suv_df$Owner.Satisfaction %in% c("C","D"),]
 
+min(suv_df$Overall.Score)
+
 suv_df[suv_df$Overall.Score==  min(suv_df$Overall.Score),]
 
 suv_df[suv_df$Overall.Score==  max(suv_df$Overall.Score),]
 ?order
+
+order(suv_df$Overall.Score,decreasing = TRUE)
+
+
+
 sorted_df <- suv_df[order(suv_df$Overall.Score,decreasing = TRUE),] #Sorts data frame by Overall.Score in ascending order
 sorted_df[1:3,]
 #sort(suv_df$Overall.Score,decreasing = TRUE)[1:3]
 #order(suv_df$Overall.Score,decreasing = TRUE)[1:3]
+
 suv_df$Recommended <- NULL #Deletes original variable Recommended
 View(suv_df)  #Displays the updated data frame
+
 summary(suv_df)  #Displays a statistical summary of the data frame
 
 #Type conversion
@@ -108,18 +121,20 @@ suv_df[grepl("Toyota",suv_df$Make, fixed=TRUE),] #Extracts rows where Make is "T
 
 
 #Read and write csv, excel....
-
+suv_df$Recommended
 recom_df = suv_df[suv_df$Recommended=="Yes",]
 View(recom_df)
 
-write.csv(recom_df,"week1/data/recommended.csv")
-#install readxl package writexl
-getwd()
-read.csv("week1/data/recommended.csv")
-
-
 install.packages("readxl")
 install.packages("writexl")
+
+write.csv(recom_df,"week3/data/recommended.csv")
+#install readxl package writexl
+getwd()
+read.csv("week3/data/recommended.csv")
+
+
+
 
 library(readxl)
 library(writexl)
