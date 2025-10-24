@@ -106,10 +106,93 @@ df <- data.frame(
   StoreB = c(15, 25, 35)
 )
 
+df
+
+mat = as.matrix(df[,c("StoreA","StoreB")])
+mat
+
+rownames(mat) = df$Fruit
+
+mat
+
+barplot(mat,legend.text = TRUE)
+
+barplot(t(mat),legend.text = TRUE)
+
+#stack bar using data
+regional_df <- read.csv("week4/data/kirklandregional_r.csv")
+regional_df
+regional_sales_df <- regional_df[ ,-1] #exclude the first column of the data frame.
+regional_sales_matrix <- as.matrix(regional_sales_df)
+regional_sales_matrix
+rownames(regional_sales_matrix) =regional_df$Month
+regional_sales_matrix
+barplot(t(regional_sales_matrix), 
+        xlab = "Month", 
+        ylab = "Sales ($100s)",,
+        legend.text = TRUE,col = c("red","blue"))
+
+barplot(regional_sales_matrix, 
+        xlab = "Month", 
+        ylab = "Sales ($100s)",,
+        legend.text = TRUE,col = c("red","blue"))
 
 
+barplot(t(regional_sales_matrix), 
+        xlab = "Month", 
+        ylab = "Sales ($100s)",beside = TRUE,
+        legend.text = TRUE,col = c("red","blue"))
+
+#cross validation / pivot tables / data grouping
+
+#install.packages("pivottabler")
+
+library(pivottabler)
 
 
+a <- c("male", "female", "female", "male","male","male","female")
+b <- c("small","medium","small","medium","large","large","small")
+ages = c(20,21,34,22,30,35,29)
+spending = c(2345,23000,5000,3245,3333,1200,120)
+sizes = data.frame(gender=a,size=b,age=ages,spending=spending)
+sizes
 
+
+pt <- PivotTable$new()
+pt$addData(sizes)
+pt$addColumnDataGroups("gender")
+pt$addRowDataGroups("size")
+pt$defineCalculation(calculationName="counts", summariseExpression="n()")
+pt$defineCalculation(calculationName="means", summariseExpression="mean(age, na.rm=TRUE)")
+pt$evaluatePivot() #dataframe output
+pt$renderPivot() # html output
+
+
+## creating a stacked bar chart from pivot table
+pt <- PivotTable$new()
+pt$addData(sizes)
+pt$addColumnDataGroups("gender")
+pt$addRowDataGroups("size")
+pt$defineCalculation(calculationName="counts", summariseExpression="n()")
+pt$evaluatePivot()
+pt$renderPivot()
+
+pt_df = pt$asDataFrame()
+
+
+pt_df[is.na(pt_df)] <- 0
+pt_df
+
+pt_df = pt_df[1:3,1:2]
+pt_df
+
+barplot(as.matrix(pt_df), 
+        xlab = "Gender", 
+        ylab = "Count",
+        col = c("red","blue","yellow"))
+legend("topright",
+       legend=c("large", "medium","small"),
+       lty = "solid",
+       col = c("red","blue","yellow"))
 
 
