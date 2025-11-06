@@ -1,7 +1,7 @@
 ### reading files without loading the whole content
 
 
-readLines("week5/data/ufo.csv",n = 5)
+readLines("week6/data/sdeliveries_r.csv",n = 5)
 
 
 
@@ -9,7 +9,7 @@ readLines("week5/data/ufo.csv",n = 5)
 
 #sddeliveries -> csv
 
-deliveries_df = read.csv("week5/data/sdeliveries_r.csv")
+deliveries_df = read.csv("week6/data/sdeliveries_r.csv")
 
 View(deliveries_df)
 #lets format the date field and create a column of Date class
@@ -22,7 +22,7 @@ deliveries_df[order(deliveries_df$date_sdelivery,decreasing = TRUE),]
 # read txt, default seperator is tab
 
 ?read.table
-purchase_prices_df = read.table("week5/data/tblpurchaseprices_r.txt",
+purchase_prices_df = read.table("week6/data/tblpurchaseprices_r.txt",
                                 header = TRUE)
 View(purchase_prices_df)
 str(purchase_prices_df)
@@ -36,9 +36,9 @@ max(dat)
 min(dat)
 
 #there are no headers in the following file, and the delimiter is '|' 
-mov_temp = read.table("week5/data/movieusers.txt")
+mov_temp = read.table("week6/data/movieusers.txt")
 View(mov_temp)
-movie_user_df = read.table("week5/data/movieusers.txt",header = FALSE,sep="|",
+movie_user_df = read.table("week6/data/movieusers.txt",header = FALSE,sep="|",
                            col.names = c("id","age","gender","occupation","postcode"))
 View(movie_user_df)
 
@@ -54,7 +54,7 @@ View(movie_user_df)
 install.packages("tidyverse") # ggplot2(visualizing) + dplyr(querying) + tidyr(reshaping tidying)
 library(tidyverse)
 
-treadwear_df = read.csv("week5/data/treadwear_r.csv")
+treadwear_df = read.csv("week6/data/treadwear_r.csv")
 View(treadwear_df)
 summary(treadwear_df) # NA's are reported
 ?is.na
@@ -77,7 +77,7 @@ drop_na(treadwear_df) # clean df, only keeps the complete rows
 
 ####DUBLICATE RECORDS ###########
 
-treadnew = read.csv("week5/data/treadwearnew_r.csv")
+treadnew = read.csv("week6/data/treadwearnew_r.csv")
 View(treadnew)
 ?duplicated
 duplicated(treadnew)
@@ -92,7 +92,7 @@ sum(duplicated(treadnew))
 
 #subsetting data
 
-treadwear_df = read.csv("week5/data/treadwear_r.csv")
+treadwear_df = read.csv("week6/data/treadwear_r.csv")
 ?subset
 newdata_df <- subset(treadwear_df, Position.on.Automobile=="LF" & Tread.Depth <= 2)
 View(newdata_df)
@@ -103,11 +103,11 @@ newdata_df2 <- subset(treadwear_df, Position.on.Automobile=="LF" & Tread.Depth <
 View(newdata_df2)
 
 # combining records
-?rbind
-?cbind
+?rbind # row binding
+?cbind # column binding
 
-treadwear_df = read.csv("week5/data/treadwear_r.csv")
-treadwear_df_new = read.csv("week5/data/treadwearnew_r.csv")
+treadwear_df = read.csv("week6/data/treadwear_r.csv")
+treadwear_df_new = read.csv("week6/data/treadwearnew_r.csv")
 head(treadwear_df)
 head(treadwear_df_new)
 combinedtread_df <- rbind(treadwear_df,treadwear_df_new)
@@ -121,7 +121,7 @@ library(dplyr)
 library(tidyr)
 vignette("dplyr")
 #######dplyr
-treadwear_df = read.csv("week5/data/treadwear_r.csv")
+treadwear_df = read.csv("week6/data/treadwear_r.csv")
 # operator: %>%
 #filter() picks cases based on their values.
 #select() picks variables based on their names.
@@ -129,10 +129,11 @@ treadwear_df = read.csv("week5/data/treadwear_r.csv")
 #summarise() reduces multiple values down to a single summary.
 #arrange() changes the ordering of the rows.
 #returns dataframe
+
 treadwear_df%>%filter(Position.on.Automobile=="LF" & Miles>5000)
 treadwear_df%>%filter(Position.on.Automobile=="LR" & Tread.Depth>10)
 
-treadwear_df %>% 
+selected_col_df = treadwear_df %>% 
   select(Miles, Life.of.Tire..Months.)
 
 treadwear_df%>%filter(Position.on.Automobile=="LR" & Tread.Depth>10)%>%
@@ -169,7 +170,7 @@ treadwear_df%>%filter(Position.on.Automobile=="LR" & Tread.Depth>10)%>%
 ##################
 
 
-brewersaddresses_df <- read.csv("week5/data/tblbrewersaddresses_r.csv")
+brewersaddresses_df <- read.csv("week6/data/tblbrewersaddresses_r.csv")
 brewersaddresses_df
 brewersaddresses_df$Address
 
@@ -180,13 +181,14 @@ brewersaddresses_df%>%count()
 tst = brewersaddresses_df %>% separate(Address, c('StreetAddress', 'CityName', 'State', 'ZipCode'), sep=", ")
 tst
 #uniting fields
-tst%>%unite(col = "address",c("StreetAddress","CityName", "State", "ZipCode"),sep = ',')
+tst%>%unite(col = "address",c("StreetAddress","CityName", "State", "ZipCode"),sep = ', ')
 
 # you may use paste() for combining character columns, also there is the unify() method of dplyr
 
-#merging fields
-treadwear_df <- read.csv("week5/data/treadwear_r.csv")
-treadwearmodels_df <- read.csv("week5/data/treadwearmodels_r.csv")
+
+#merging fields (Joining tables)
+treadwear_df <- read.csv("week6/data/treadwear_r.csv")
+treadwearmodels_df <- read.csv("week6/data/treadwearmodels_r.csv")
 treadwearmodels_df
 treadwear_df
 ?merge
@@ -234,7 +236,7 @@ View(mergededtread_df)
 
 #unstack 
 ?spread
-stackedtablehs3pa_df <- read.csv("week5/data/stackedtablehs3pa_r.csv")
+stackedtablehs3pa_df <- read.csv("week6/data/stackedtablehs3pa_r.csv")
 df_unstacked <- stackedtablehs3pa_df %>%spread(key=Year, value=Three.Point.Attempts)
 df_unstacked
 
@@ -251,7 +253,7 @@ write.csv(newstackedtablehs3pa_df, "stacked.csv")
 
 #group_by, summarise
 
-mov_users = read.table("week5/data/movieusers.txt",header = FALSE, 
+mov_users = read.table("week6/data/movieusers.txt",header = FALSE, 
            col.names = c("id","age","gender","occupation","postcode"),sep = "|")
 
 head(mov_users)
@@ -262,7 +264,7 @@ mov_users%>%group_by(gender,occupation)%>%count()
 grp_data = mov_users%>%group_by(gender)%>%summarise(mean_age=mean(age,na.rm=TRUE))
 grp_data
 
-#mean, max, sd, min, n
+#mean, max, sd, min, n()-> count
 
 grp_data = mov_users%>%group_by(gender)%>%summarise(cnt=n())
 grp_data
@@ -270,11 +272,11 @@ grp_data
 grp_data = mov_users%>%group_by(occupation)%>%summarise(mean_age=mean(age,na.rm=TRUE))
 grp_data
 
-grp_data = mov_users%>%group_by(occupation)%>%summarise(mean_age=max(age,na.rm=TRUE))
+grp_data = mov_users%>%group_by(occupation)%>%summarise(mean_age=mean(age,na.rm=TRUE),max_age=max(age,na.rm=TRUE))
 grp_data%>%arrange(desc(mean_age))
 
 
-stackedtablehs3pa_df <- read.csv("week5/data/stackedtablehs3pa_r.csv")
+stackedtablehs3pa_df <- read.csv("week6/data/stackedtablehs3pa_r.csv")
 
 stackedtablehs3pa_df %>%
   group_by(Team) %>%

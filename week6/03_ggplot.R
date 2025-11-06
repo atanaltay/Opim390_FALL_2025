@@ -1,6 +1,6 @@
 ########for more information: https://ggplot2.tidyverse.org
 
-df = read.csv("week5/data/Auto.csv")
+df = read.csv("week6/data/Auto.csv")
 head(df)
 str(df)
 
@@ -33,11 +33,11 @@ library(ggplot2)
 # points on plot
 ggplot(df, aes(x = weight, y = mpg)) +
   geom_point()+
-  labs(title="mpg by weight")
+  labs(title="mpg by weight")+
   theme_light()
 
 ggplot(df, aes(x = weight, y = mpg)) +
-  geom_point(color="blue",size=3)+
+  geom_point(color="blue",size=1)+
   theme_light()
 
 # if we want to change aestetics per object you should also add
@@ -45,6 +45,8 @@ ggplot(df, aes(x = weight, y = mpg)) +
 ggplot(df, aes(x = horsepower, y = mpg)) +
   geom_point(aes(color = factor(origin))) +
   theme_light()
+
+########## CONTINUEE #############
 
 df%>%filter(origin==3)
 
