@@ -15,6 +15,7 @@ str(df)
 
 install.packages("tidyverse")
 library(ggplot2)
+library(dplyr)
 
 ###usage:
 
@@ -48,7 +49,7 @@ ggplot(df, aes(x = horsepower, y = mpg)) +
 
 ########## CONTINUEE #############
 
-df%>%filter(origin==3)
+df%>%filter(origin==1)
 
 
 ggplot(df, aes(x = weight, y = mpg)) +
@@ -159,7 +160,7 @@ drugs <- data.frame(
   effect = c(4.2, 9.7, 6.1)
 )
 ggplot(drugs, aes(drug,effect)) + 
-  geom_bar(stat = "identity") #geom_bar directlu tries to count observations, so we explicitly set stat to identity to get use of the effect
+  geom_bar(stat = "identity") #geom_bar directly tries to count observations, so we explicitly set stat to identity to get use of the effect
 
 ggplot(drugs, aes(drug,effect)) + 
   geom_col()
