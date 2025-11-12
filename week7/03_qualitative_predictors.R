@@ -1,11 +1,11 @@
 # Qualitative Predictors
 
-Carseats = read.csv("week6/data/Carseats.csv")
+Carseats = read.csv("week7/data/Carseats.csv")
 
 ###
 head(Carseats)
 ###
-
+str(Carseats)
 names(Carseats)
 
 

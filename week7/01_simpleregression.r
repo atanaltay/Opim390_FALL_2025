@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # read in data file from working directory into a data frame
-armands_df <- read.csv("week6/data/armands_r.csv")
+armands_df <- read.csv("week7/data/armands_r.csv")
 
 # view the data in the data frame
 View(armands_df)

@@ -1,9 +1,27 @@
 # read in data file from working directory into a data frame
-butler_with_deliveries_df <- read.csv("week6/data/butlerwithdeliveries_r.csv")
+butler_with_deliveries_df <- read.csv("week7/data/butlerwithdeliveries_r.csv")
 
 # view the data in the data frame
 View(butler_with_deliveries_df)
 str(butler_with_deliveries_df)
+library(ggplot2)
+
+ggplot(data=butler_with_deliveries_df,aes(Miles,Time))+
+  geom_point()+
+  geom_smooth(method = "lm",formula = y~x)
+
+ggplot(data=butler_with_deliveries_df,aes(Deliveries,Time))+
+  geom_point()+
+  geom_smooth(method = "lm",formula = y~x)
+
+library(GGally)
+
+# Create a scatterplot matrix using ggpairs()
+ggpairs(butler_with_deliveries_df[,-1], 
+        title = "Scatterplot Matrix",
+)+
+  theme_minimal()
+
 
 # estimate the multiple linear regression model
 butler_MLR <- lm(Time ~ Miles + Deliveries, data= butler_with_deliveries_df)
