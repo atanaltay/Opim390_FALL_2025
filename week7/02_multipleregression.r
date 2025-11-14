@@ -14,6 +14,11 @@ ggplot(data=butler_with_deliveries_df,aes(Deliveries,Time))+
   geom_point()+
   geom_smooth(method = "lm",formula = y~x)
 
+#Multicollinearity?
+ggplot(data=butler_with_deliveries_df,aes(Deliveries,Miles))+
+  geom_point()+
+  geom_smooth(method = "lm",formula = y~x)
+
 library(GGally)
 
 # Create a scatterplot matrix using ggpairs()

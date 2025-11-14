@@ -11,7 +11,7 @@ ggplot(data=armands_df,aes(Population,Sales))+
   geom_point()+
   geom_smooth(method = "lm",formula = y~x)
 
-
+names(armands_df)
 # estimate the simple linear regression model
 armands_SLR <- lm(Sales ~ Population, data = armands_df)
 summary(armands_SLR)
