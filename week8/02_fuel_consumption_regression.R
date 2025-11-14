@@ -119,10 +119,6 @@ df[95,]
 
 cooks.distance(lm.fit)[cooks.distance(lm.fit)>1] #no high influence points
 
-#lm.fit1 <- lm(medv ~ . - age, data = Boston)
-#summary(lm.fit1)
-###
-#lm.fit1 <- update(lm.fit, ~ . - age)
 
 lm.fit1 = lm(mpg~horsepower+factor(origin),data=df)
 summary(lm.fit1)
@@ -199,8 +195,6 @@ qqline(std_resid, col = "red", lwd = 2)  # Add reference line
 ### other polynomial methods poly()
 lm.fit5 <- lm(mpg ~ poly(horsepower, 5),data=df)
 summary(lm.fit5)
-###
-summary(lm(medv ~ log(rm), data = Boston))
 
 # because of heteroscedasticity, we may need to transform
 # mpg variable, so let's check its distribution:

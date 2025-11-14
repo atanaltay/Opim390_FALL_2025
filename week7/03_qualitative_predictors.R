@@ -16,6 +16,7 @@ Carseats$US <- as.factor(Carseats$US)
 
 summary(Carseats$US)
 contrasts(Carseats$US)
+contrasts(Carseats$Urban)
 contrasts(Carseats$ShelveLoc)
 
 # Load the libraries
@@ -29,10 +30,6 @@ ggpairs(Carseats,
 
 hist(Carseats$Sales,breaks = 20)
 
-#using all features
-lm.fit <- lm(Sales ~ + CompPrice+Income+Advertising+Population+Price+ShelveLoc+Age+Education+Urban+US, 
-             data = Carseats)
-summary(lm.fit)
 
 ggplot(data = Carseats,aes(Urban,Sales))+
   geom_boxplot()
@@ -46,12 +43,16 @@ ggplot(data = Carseats,aes(Sales,group = US,colour = US))+
   geom_density()
 
 
-
 ggplot(data = Carseats,aes(ShelveLoc,Sales))+
   geom_boxplot()
 
 ggplot(data = Carseats,aes(Sales,group = ShelveLoc,colour = ShelveLoc))+
   geom_density()
+
+#using all features
+lm.fit <- lm(Sales ~ CompPrice+Income+Advertising+Population+Price+ShelveLoc+Age+Education+Urban+US, 
+             data = Carseats)
+summary(lm.fit)
 
 #calculate RMSE:
 sqrt(mean(residuals(lm.fit)**2))
@@ -67,11 +68,7 @@ sqrt(mean(residuals(lm.fit2)**2))
 #Slightly lower RMSE, around the same R2
 # As the second model is simple we may pick the model with less params.
 
-###
-#display the assignment of dummy vars:
-contrasts(Carseats$ShelveLoc)
-contrasts(Carseats$US)
-contrasts(Carseats$Urban)
+
 
 
 

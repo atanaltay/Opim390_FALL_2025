@@ -1,7 +1,7 @@
 library(tidyverse)
 #dataset info: https://archive.ics.uci.edu/dataset/9/auto+mpg
 
-df = read.csv("week7/data/Auto.csv")
+df = read.csv("week8/data/Auto.csv")
 
 head(df)
 View(df)
