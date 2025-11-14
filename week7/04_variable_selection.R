@@ -10,7 +10,7 @@ library(olsrr)
 
 
 # read in data file from working directory into a data frame
-carseats <- read.csv("week6/data/Carseats.csv")
+carseats <- read.csv("week7/data/Carseats.csv")
 View(carseats)
 str(carseats)
 # Ensure ShelveLoc is a factor
