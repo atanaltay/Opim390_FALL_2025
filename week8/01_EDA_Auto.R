@@ -140,6 +140,7 @@ df <- df %>%
   group_by(cylinders) %>%
   mutate(horsepower = ifelse(is.na(horsepower), median(horsepower, na.rm = TRUE), horsepower)) %>%
   ungroup()
+
 sum(df[is.na(df$horsepower),]) # All NA's are removed
 
 
@@ -169,11 +170,11 @@ sum(df[is.na(df$horsepower),]) # All NA's are removed
   str(df)
 
   df$cylinders = as.numeric(df$cylinders)
-  
-  
-  ggpairs(df[,-9])+
-    theme_minimal()
   df$horsepower = as.numeric(df$horsepower)
+  
+  ggpairs(df[,c(-9,-10)])+
+    theme_minimal()
+  
 
   library("corrplot")
   #using library corrplot

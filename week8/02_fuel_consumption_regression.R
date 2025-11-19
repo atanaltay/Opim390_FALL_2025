@@ -2,7 +2,7 @@ library(tidyverse)
 library("corrplot")
 
 
-df = read.csv("data/Auto.csv")
+df = read.csv("week8/data/Auto.csv")
 
 #Learn about the data
 View(df)
@@ -93,7 +93,7 @@ lm.fit <- lm(mpg ~ ., data = df[-9]) # all variables
 summary(lm.fit)
 
 library(car)
-install.packages("car")
+#install.packages("car")
 lm.fit <- lm(mpg ~ ., data = df[-9])
 
 vif(lm.fit)
@@ -161,7 +161,7 @@ lm.fit <- lm(mpg ~ horsepower,data=df)
 anova(lm.fit, lm.fit2)
 #The anova() function performs a hypothesis
 #test comparing the two models. The null hypothesis is that the two models
-#fit the data equally well, and the alternative hypothesis is that the full
+#fit the data equally well, and the alternative hypothesis is that the second
 #model is superior.
 ###
 
@@ -198,7 +198,7 @@ summary(lm.fit5)
 
 # because of heteroscedasticity, we may need to transform
 # mpg variable, so let's check its distribution:
-
+library(ggplot2)
 ggplot(df, aes(x=mpg)) + 
   geom_density()
 
