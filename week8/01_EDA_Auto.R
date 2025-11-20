@@ -24,7 +24,7 @@ df%>%filter(is.na(horsepower))
 #understanding origin..
 table(df$origin)
 
-df%>%filter(origin==2)
+df%>%filter(origin==3)
 
 #origin 1-> US, 2->europe, 3-> Japan
 

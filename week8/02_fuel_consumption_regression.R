@@ -104,6 +104,7 @@ vif(lm.fit)
 
 #As a rule of thumb, an observation can potentially exert great
 #influence on a multiple regression model if its leverage exceeds 3(p + 1)/n
+# p/n
 dim(df)
 
 3*9/392 #-> scores over 0.068 are potentially leverage points
@@ -242,7 +243,7 @@ library(dplyr)
 # Create the categorical variable based on median horsepower
 df <- df %>%
   mutate(hp_med = ifelse(horsepower > median(horsepower), "Above Median", "Below Median"))
-
+df
 # Plot the regression lines with different colors for "hp_med"
 ggplot(df, aes(x = weight, y = mpg, color = hp_med)) +
   geom_point(alpha = 0.6) +   # Scatter plot
