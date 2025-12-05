@@ -27,7 +27,7 @@ training <- df[indxTrain,]
 testing <- df[-indxTrain,]
 
 #plain tree
-rpart
+
 regTree = rpart(Sales ~ . - Store,data=training)
 regTree
 rpart.plot(regTree)
@@ -50,7 +50,7 @@ treePredict <- predict(regTree,newdata = testing)
 # output performance metrics
 postResample(treePredict, testing$Sales)
 
-regTree = rpart(Sales ~ . - Store,data=training,cp=0.05)
+regTree = rpart(Sales ~ . - Store,data=training,cp=0.1)
 rpart.plot(regTree)
 treePredict <- predict(regTree,newdata = testing)
 postResample(treePredict, testing$Sales)

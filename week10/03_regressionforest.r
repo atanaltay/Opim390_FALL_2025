@@ -99,7 +99,7 @@ ggplot(results, aes(x = ntree, y = RMSE)) +
 regForestFit <- randomForest(
   Sales ~ . - Store,           # formula
   data = training,       # dataset
-  ntree = 200,          # number of trees
+  ntree = 500,          # number of trees
   mtry = 5,             # number of variables randomly selected at each split
   importance = TRUE     # to view feature importance later
 )
