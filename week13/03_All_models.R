@@ -24,6 +24,15 @@ df$HighSales <- factor(df$HighSales, levels = c("Yes","No"))
 
 prop.table(table(df$HighSales))
 
+library(GGally)
+library(ggplot2)
+
+# Create the plot matrix colored by HighSales
+ggpairs(df[,c(-1)], aes(color = HighSales, alpha = 0.5)) +
+  theme_bw() +
+  labs(title = "Plot Matrix of Numeric Features Colored by HighSales")
+
+
 set.seed(1975)
 indxTrain <- createDataPartition(y = df$HighSales, p = 0.8, list = FALSE)
 training <- df[indxTrain, ]
